@@ -1,0 +1,76 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+MemoryCaptures/
+Recordings/
+CrashReports/
+
+# Rider, VS, VSCode
+.vscode/
+.idea/
+*.sln
+*.csproj
+*.unityproj
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# Gradle / Android / Xcode
+.gradle/
+*.apk
+*.aab
+*.keystore
+*.plist
+ExportedObj/
+*.xcworkspace
+*.xcuserstate
+
+# OS cache files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Plastic SCM data
+.plastic/
+ignore.conf
+
+# Auto-generated meta files
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# Build artifacts
+*.obj
+*.exe
+*.dll
+*.pdb
+*.mdb
+*.so
+*.a
+*.lib
+*.ncb
+*.sdf
+*.opensdf
+*.VC.db
+*.pidb
+*.userprefs
+
+# Crash and profiler files
+sysinfo.txt
+*.stackdump
+
+# JetBrains Rider logs
+.idea/
+.vscode/
+*.DotSettings.user
+
+# Unity Cloud Build
+/[Bb]uilds/
