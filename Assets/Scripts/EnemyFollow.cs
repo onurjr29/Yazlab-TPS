@@ -4,9 +4,10 @@ using UnityEngine.AI;
 public class EnemyFollow : MonoBehaviour
 {
     public Transform player;
-    public float followRange = 20f;
-    public float stopDistance = 2f;
+    public float stopDistance = 1.5f;       // Oyuncuya çok yaklaşınca durma mesafesi
+    public float chaseUpdateRate = 0.2f;    // Hedefi güncelleme sıklığı
     private NavMeshAgent agent;
+    private float updateTimer;
 
     void Start()
     {
@@ -18,28 +19,30 @@ public class EnemyFollow : MonoBehaviour
             if (p != null)
                 player = p.transform;
         }
+
+        // Düşmanın hız ve tepki ayarlarını biraz güçlendirelim
+        agent.speed = 15f;             // daha hızlı koşsun
+        agent.acceleration = 50f;     // ani tepki versin
+        agent.angularSpeed = 1000f;    // dönüşleri hızlı olsun
+        agent.stoppingDistance = stopDistance;
+        agent.autoBraking = false;
     }
 
     void Update()
     {
         if (player == null) return;
 
-        float distance = Vector3.Distance(transform.position, player.position);
-
-        // Her yönden algılasın, sadece mesafeye baksın
-        if (distance <= followRange)
+        updateTimer -= Time.deltaTime;
+        if (updateTimer <= 0f)
         {
-            if (distance > stopDistance)
-            {
-                agent.isStopped = false;
-                agent.SetDestination(player.position);
-            }
-            else
-            {
-                agent.isStopped = true;
-            }
+            // Sürekli oyuncunun pozisyonuna hedef koy
+            agent.isStopped = false;
+            agent.SetDestination(player.position);
+            updateTimer = chaseUpdateRate;  // Belirli aralıkla hedefi güncelle
         }
-        else
+
+        // Eğer çok yaklaştıysa biraz durup yön değiştirsin
+        if (agent.remainingDistance <= stopDistance)
         {
             agent.isStopped = true;
         }

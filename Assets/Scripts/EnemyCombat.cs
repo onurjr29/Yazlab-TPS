@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
     [Header("Attack Settings")]
-    public float attackRange = 10f;
+    public float attackRange = 40f;
     public float fireRate = 1.2f;
     public float bulletSpeed = 20f;
     public GameObject bulletPrefab;
@@ -54,6 +54,14 @@ public class EnemyCombat : MonoBehaviour
 
         // Mermiyi üret
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+        // 🔥 EKLENDİ: Merminin owner'ını ata
+        var bulletScript = bullet.GetComponent<Bullet>();
+        if (bulletScript != null)
+        {
+            bulletScript.owner = this.gameObject;
+            Debug.Log("[EnemyCombat] owner atandı: " + this.gameObject.name);
+        }
 
         // Düşman kendi mermisiyle çarpışmasın
         var bulletCol = bullet.GetComponent<Collider>();

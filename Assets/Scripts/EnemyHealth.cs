@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public float maxHealth = 100f;
+    public float maxHealth = 300f;
     public float currentHealth;
     public Slider healthSlider;
     public GameObject deathEffectPrefab;
@@ -39,6 +39,7 @@ public class EnemyHealth : MonoBehaviour
             Die();
         }
     }
+
     void Die()
     {
         if (deathEffectPrefab != null)
@@ -52,7 +53,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            TakeDamage(1);
+            TakeDamage(0.5f);
             Destroy(other.gameObject);
         }
     }
